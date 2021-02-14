@@ -5,21 +5,29 @@ import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 
 class Layout extends Component {
+  state = {
+    showDrawer: false,
+  };
 
-    state = {
-        showDrawer: true
-    };
+  closeDrawerHandler = () => {
+    this.setState({ showDrawer: false });
+  };
 
-    closeDrawerHandler = () => {
-        this.setState({ showDrawer: false });
-    }
+  toggleDrawerClickHandler = () => {
+    this.setState({ showDrawer: !this.state.showDrawer });
+  };
 
-    render() {
+  render() {
     return (
       <Fragment>
-        <Toolbar />
-        <SideDrawer open={this.state.showDrawer} closed={this.closeDrawerHandler} />
-        <main className={classes.Content}>{this.props.children}</main>
+        <Toolbar menuClick={this.toggleDrawerClickHandler} />
+        <SideDrawer
+          open={this.state.showDrawer}
+          closed={this.closeDrawerHandler}
+        />
+        <main className={classes.Content}>
+          {this.props.children}
+        </main>
       </Fragment>
     );
   }
