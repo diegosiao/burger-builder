@@ -1,4 +1,3 @@
-import { instanceOf } from 'prop-types';
 import React from 'react';
 
 import classes from './Logo.css';
